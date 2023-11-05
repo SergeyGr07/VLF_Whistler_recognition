@@ -63,14 +63,14 @@ for filename in os.listdir(audio_folder):
         if sum(combined_features) > threshold:
             print(f"Файл '{filename}' содержит свистящие атмосферики.\n")
 
-            # audio_data, sample_rate = librosa.load(audio_file)
-            # spectrogram = librosa.feature.melspectrogram(y=audio_data, sr=sample_rate)
-            # plt.figure(figsize=(10, 4))
-            # librosa.display.specshow(librosa.power_to_db(spectrogram, ref=np.max), y_axis='mel', x_axis='time')
-            # plt.colorbar(format='%+2.0f dB')
-            # plt.title('Mel spectrogram')
-            # plt.tight_layout()
-            # plt.show()
+            audio_data, sample_rate = librosa.load(audio_file)
+            spectrogram = librosa.feature.melspectrogram(y=audio_data, sr=sample_rate)
+            plt.figure(figsize=(10, 4))
+            librosa.display.specshow(librosa.power_to_db(spectrogram, ref=np.max), y_axis='mel', x_axis='time')
+            plt.colorbar(format='%+2.0f dB')
+            plt.title('Mel spectrogram of whistlers')
+            plt.tight_layout()
+            plt.show()
 
         else:
             audio_data, sample_rate = librosa.load(audio_file)
@@ -78,7 +78,7 @@ for filename in os.listdir(audio_folder):
             plt.figure(figsize=(10, 4))
             librosa.display.specshow(librosa.power_to_db(spectrogram, ref=np.max), y_axis='mel', x_axis='time')
             plt.colorbar(format='%+2.0f dB')
-            plt.title('Mel spectrogram')
+            plt.title('Mel spectrogram of non-whistlers')
             plt.tight_layout()
             plt.show()
             print(f"Файл '{filename}' не содержит свистящих атмосфериков.\n")
